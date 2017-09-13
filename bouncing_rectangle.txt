@@ -1,0 +1,19 @@
+"""
+ Bounces a rectangle around the screen.
+ 
+ Sample Game Program
+"""
+ 
+# Define colors we'll use
+# Initialize game system
+# Set the height and width of the screen
+# Display Screen
+# Set starting position of rectangle 
+# Set Speed and direction of rectangle
+# Repeat until the user clicks the close button.
+    # move rectangle to new position
+    # change direction if it bounces on a wall
+    # place the rectangle at current position
+    # clear screen
+    # draw whole page
+# Finish
