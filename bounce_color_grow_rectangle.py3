@@ -58,6 +58,7 @@ step_size = 2
 # Counter of number of collisions
 step_count = 0
 
+# Check if it is possible to insert a new rectangle, or if it's beyond limit
 def checkInsert():
     if len(lst)>limit:
         if lst[1]["hasDone"] == True:
@@ -114,7 +115,9 @@ while not done:
     # Set the screen background
     screen.fill(BLACK)
  
+    # Getting each existing rectangle
     for r in lst:
+        #Extracting position and size
         rx = r['x']
         ry = r['y']
         rw = r['w']
@@ -128,12 +131,15 @@ while not done:
             r['hasDone'] = True #indicate has finished movement
         else:
             if rx+rw > size[0]:
+                #Making size bigger
                 rw *= factor; rh *= factor
+                #Fixing position
                 rx = size[0]-rw
+                #Changing direction
                 r['dx'] = -1
+                #Collision callback
                 didCollide(40,0,2,2)
             elif rx<0:
-                #rw = rw/2; rh = rh/2
                 rw *= factor; rh *= factor
                 rx = 0
                 r['dx'] = 1
@@ -148,26 +154,13 @@ while not done:
                 ry = 0
                 r['dy'] = 1
                 didCollide(0,0,2,2)
+        #Updating position and size
         r['x'] = rx
         r['y'] = ry
         r['w'] = rw
         r['h'] = rh
+        #Drawing rectangle
         pygame.draw.rect(screen, r['color'], [rx, ry, rw, rh])
-
-    # --- Logic
-    # Move the rectangle starting point
-    #rect_x += rect_change_x
-    #rect_y += rect_change_y
- 
-    # Bounce the ball if needed
-    #if rect_y > 450 or rect_y < 0:
-    #    rect_change_y = rect_change_y * -1
-    #if rect_x > 650 or rect_x < 0:
-    #    rect_change_x = rect_change_x * -1
- 
-    # Draw the rectangle
-    #pygame.draw.rect(screen, WHITE, [rect_x, rect_y, 50, 50])
-    #pygame.draw.rect(screen, RED, [rect_x + 10, rect_y + 10, 30, 30])
  
     # --- Wrap-up
     # Limit to 60 frames per second
